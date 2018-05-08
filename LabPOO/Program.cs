@@ -61,19 +61,32 @@ namespace LabPOO
         public static void Pay()
         {
             PrintHeader();
-            int total = 0;
-            for (int i = 0; i < cart.Count; i++)
+            if (cart.Count == 14)
             {
-                total += cart[i].Price;
+                int total = 0;
+                for (int i = 0; i < cart.Count; i++)
+                {
+                    total += cart[i].Price;
+                }
+                Console.WriteLine("El total de tu compra es: $" + total.ToString());
+                Console.Write("Este programa se cerrará en ");
+                for (int i = 5; i > 0; i--)
+                {
+                    Console.Write(i.ToString() + " ");
+                    Thread.Sleep(1000);
+                }
+                cart.Clear();
             }
-            Console.WriteLine("El total de tu compra es: $" + total.ToString());
-            Console.Write("Este programa se cerrará en ");
-            for (int i = 5; i > 0; i--)
+            else
             {
-                Console.Write(i.ToString() + " ");
-                Thread.Sleep(1000);
+                Console.WriteLine("\t\t No ha terminado de comprar todos los elementos de la lista!");
+                Console.WriteLine("\n\nPresiona ENTER para volver al supermercado...");
+                ConsoleKeyInfo response = Console.ReadKey(true);
+                while (response.Key != ConsoleKey.Enter)
+                {
+                    response = Console.ReadKey(true);
+                }
             }
-            cart.Clear();
         }
 
         public static void WalkAround()
